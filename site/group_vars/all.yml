@@ -85,8 +85,9 @@ trix_cluster_dhcp_end: 192.168.1.250
 
 # -----------------------------------------------------------------------
 # DNS forwarders
-trix_dns_forwarders: "8.8.8.8, 8.8.4.4"
-
+trix_dns_forwarders: 
+  - "8.8.8.8"
+  - "8.8.4.4"
 
 # -----------------------------------------------------------------------
 # Default search domains to be added to /etc/resolv.conf
