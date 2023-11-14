@@ -54,9 +54,9 @@ trix_domain: dace
 # In an HA pair, those are the hostname and IP for the first controller.
 # Those variables are required, with or without HA.
 
-trix_ctrl1_ip: 192.168.1.102
-trix_ctrl1_bmcip: 192.168.2.102
-trix_ctrl1_heartbeat_ip: 192.168.3.102
+trix_ctrl1_ip: 192.168.1.20
+trix_ctrl1_bmcip: 192.168.2.20
+trix_ctrl1_heartbeat_ip: 192.168.3.20
 trix_ctrl1_hostname: servus
 
 # In a non-HA setup, all of the following variables will be ignored:
@@ -156,6 +156,7 @@ luna_verify_certificate: false
 # whereas everything is allowed on the trusted interfaces
 
 firewalld_public_interfaces: [wlp0s20f3]
+#firewalld_public_interfaces: [enp2s0]
 firewalld_trusted_interfaces: [eno2]
 firewalld_public_tcp_ports: [22, 443]
 firewalld_public_udp_ports: []
