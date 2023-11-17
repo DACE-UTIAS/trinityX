@@ -41,11 +41,31 @@
     dest: "{{ ca_certificate_path }}/cluster-ca.crt"
   when: ssl_ca_cert is defined
 
+- name: Copy DACE CA certificate
+  copy:
+    src: "cacert.pem"
+    dest: "{{ ca_certificate_path }}/cacert.pem"
+
 - name: Adjust OpenLDAP client TLS configuration
   lineinfile:
     path: "{{ ldap_conf }}"
-    line: 'TLS_CACERT   {{ ca_certificate_path }}/cluster-ca.crt'
+    line: 'TLS_CACERT   {{ ca_certificate_path }}cluster-ca.crt'
 
+#- name: Adjust OpenLDAP client TLS configuration for DACE
+#  lineinfile:
+#    path: "{{ ldap_conf }}"
+#    line: 'TLS_CACERT   {{ ca_certificate_path }}cacert.pem'
+
+- name: Adjust OpenLDAP client uri
+  lineinfile:
+    path: "{{ ldap_conf }}"
+    line: 'host {{ sss_host }}'
+
+- name: Adjust OpenLDAP client base
+  lineinfile:
+    path: "{{ ldap_conf }}"
+    line: 'base {{ sss_base }}'
+     
 - name: Enable sssd service
   systemd:
     name: sssd

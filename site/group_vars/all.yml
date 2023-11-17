@@ -38,7 +38,7 @@ local_install: false
 
 # -----------------------------------------------------------------------
 # Should Infiniband support packages be installed on the controller and images
-install_infiniband: false 
+install_infiniband: true
 
 
 # -----------------------------------------------------------------------
@@ -80,7 +80,7 @@ trix_ctrl_hostname: controller
 
 trix_cluster_net: 192.168.1.0 
 trix_cluster_netprefix: 24
-trix_cluster_dhcp_start: 192.168.1.200
+trix_cluster_dhcp_start: 192.168.1.100
 trix_cluster_dhcp_end: 192.168.1.250
 
 # -----------------------------------------------------------------------
@@ -248,3 +248,8 @@ enable_slurm_pam: true
 
 enable_ood_vnc: true
 
+# dace specific
+sss_host: dacecluster.dace.utias.utoronto.ca
+sss_ldap_uri: ldaps://dacecluster.dace.utias.utoronto.ca
+sss_base: dc=dace,dc=utias,dc=utoronto,dc=ca
+sss_cacert: /etc/openldap/certs/cacert.pem

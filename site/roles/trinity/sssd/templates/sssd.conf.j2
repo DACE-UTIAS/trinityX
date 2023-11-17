@@ -26,14 +26,14 @@ chpass_provider = ldap
 cache_credentials = true
 entry_cache_timeout = 600
 
-ldap_uri = {% for host in sss_ldap_hosts %}ldaps://{{ host }}/,{% endfor %}
+ldap_uri = {{ sss_ldap_uri }}
 
-ldap_search_base = dc=local
+ldap_search_base = {{ sss_base }}
 ldap_network_timeout = 30
 
 ldap_access_order = {% if sss_filter_enabled %}filter,{% endif %}expire
 {% if sss_allowed_groups is iterable %}
-ldap_access_filter = {% for group in sss_allowed_groups %} (memberOf=cn={{ group }},ou=group,dc=local) {% endfor %}
+ldap_access_filter = {% for group in sss_allowed_groups %} (memberOf=cn={{ group }},ou=group,{{ sss_base }}) {% endfor %}
 {% else %}
 ldap_access_filter = (&(objectclass=inetOrgPerson))
 {% endif %}
@@ -42,3 +42,4 @@ ldap_access_filter = (&(objectclass=inetOrgPerson))
 ldap_account_expire_policy = shadow
 
 enumerate = true
+ldap_tls_cacert = {{ sss_cacert }}
