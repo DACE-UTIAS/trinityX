@@ -127,6 +127,22 @@
     enabled: "yes"
 #  when: not ha|default(False)
 
+- name: Copy dace DNS zone 
+  copy:
+    src: "db.dace.utias.utoronto.ca"
+    dest: "{{ bind_db_path }}/db.dace.utias.utoronto.ca"
+
+- name: Copy dace DNS zone config
+  copy:
+    src: "named.dace.zones"
+    dest: "/etc/named.dace.zones"
+
+- name: Include dace DNS zone file in named conf
+  lineinfile:
+    path: '/etc/named.conf'
+    line: 'include "/etc/named.dace.zones";'
+  notify: restart named
+
 - block:
     - name: Copy default zones to {{ bind_db_path }}
       synchronize:

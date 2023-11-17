@@ -21,6 +21,12 @@
   tags: install-only
   when: ansible_facts['os_family'] == "Debian"
 
+# jc loosen cryptography, SHOULD BE RESTORED LATER
+- name: Loosen cryptography, SHOULD BE RESTORED LATER
+  command: update-crypto-policies --set LEGACY
+  changed_when: false
+  when: ansible_facts['os_family'] == "RedHat"
+
 - name: Add configuration file to /etc/sssd/sssd.conf
   template:
     src: 'sssd.conf.j2'

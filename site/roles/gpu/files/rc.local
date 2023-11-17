@@ -1,0 +1,12 @@
+#!/bin/sh
+
+modprobe -r nvidia_drm
+modprobe -r nvidia_modeset
+modprobe -r nvidia
+
+# Enable GPU persistent mode
+nvidia-persistenced
+
+#Enable GPU accounting mode
+/usr/bin/nvidia-smi -am ENABLED
+touch /var/run/rc.local

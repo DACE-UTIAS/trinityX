@@ -1,0 +1,64 @@
+$ORIGIN .
+$TTL 86400	; 1 day
+dace.utias.utoronto.ca	IN SOA	dacecluster.dace.utias.utoronto.ca. root.dacecluster.dace.utias.utoronto.ca. (
+				2023111701; serial
+				10800      ; refresh (3 hours)
+				3600       ; retry (1 hour)
+				604800     ; expire (1 week)
+				86400      ; minimum (1 day)
+				)
+			NS	dacecluster.dace.utias.utoronto.ca.
+$ORIGIN dace.utias.utoronto.ca.
+acelprinter		A	192.168.1.230
+backup			A	192.168.1.6
+bayes			A	192.168.1.21
+bayes-ib0		A	10.10.0.21
+blizzard		A	192.168.1.213
+bubnov			A	192.168.1.23
+bubnov-ib0		A	10.10.0.23
+cn01			CNAME	bayes
+cn01-ib0		CNAME	bayes-ib0
+cn02			CNAME	smolyak
+cn02-ib0		CNAME	smolyak-ib0
+cn03			CNAME	bubnov
+cn03-ib0		CNAME	bubnov-ib0
+cn04			CNAME	rayleigh
+cn04-ib0		CNAME	rayleigh-ib0
+cn05			CNAME	vapnik
+cn05-ib0		CNAME	vapnik-ib0
+cn06			CNAME	golub
+cn06-ib0		CNAME	golub-ib0
+cyclone			A	192.168.1.201
+dacecluster		A	192.168.1.10
+dacecluster-ib0		A	10.10.0.10
+gitlab			CNAME	dacecluster
+golub			A	192.168.1.26
+golub-ib0		A	10.10.0.26
+heatwave		A	192.168.1.214
+hurricane		A	192.168.1.212
+$TTL 3600	; 1 hour
+LG-G7-One		TXT	"31362d32537d8a56dd681561e5840bc069"
+$TTL 86400	; 1 day
+mgt			A	192.168.1.5
+monsoon			A	192.168.1.217
+$TTL 3600	; 1 hour
+orion			A	192.168.1.138
+			TXT	"3165417d4817c130bbcf790b49c5f74403"
+$TTL 86400	; 1 day
+rayleigh		A	192.168.1.24
+rayleigh-ib0		A	10.10.0.24
+$TTL 3600	; 1 hour
+servus			A	192.168.1.102
+			TXT	"31c1a915516e882067fa93e5f533f22236"
+$TTL 86400	; 1 day
+smolyak			A	192.168.1.22
+smolyak-ib0		A	10.10.0.22
+sn01			CNAME	dacecluster
+switch1			A	192.168.1.253
+thunder			A	192.168.1.216
+tornado			A	192.168.1.211
+vapnik			A	192.168.1.25
+vapnik-ib0		A	10.10.0.25
+viz			A	192.168.1.27
+viz-ib0			A	10.10.0.27
+whitesquall		A	192.168.1.215

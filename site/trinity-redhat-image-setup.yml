@@ -99,3 +99,6 @@
 
   - role: trinity/ood-vnc
     tags: ood
+
+  - role: gpu
+    tags: gpu

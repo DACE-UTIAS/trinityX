@@ -1,0 +1,7 @@
+zone "dace.utias.utoronto.ca" IN {
+    type master;
+    file "db.dace.utias.utoronto.ca";
+    allow-update { none; };
+    allow-transfer { none; };
+};
+
