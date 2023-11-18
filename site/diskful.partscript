@@ -1,0 +1,10 @@
+# only useful for rocky, should use pci-path instead /dev/sda
+parted /dev/sda -s 'mklabel gpt'
+parted /dev/sda -s 'rm 1'
+parted /dev/sda -s 'mkpart p ext4 1 100%'
+
+while [[ ! -b /dev/sda1 ]]; do sleep 1; done
+
+mkfs.ext4 /dev/sda1
+
+mount /dev/sda1 /sysroot

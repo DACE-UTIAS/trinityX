@@ -140,7 +140,7 @@
           type: 'ethernet'
         - name: 'ib'
           function: 'low-latency'
-          ip: '10.149.0.0'
+          ip: '10.10.0.0'
           prefix: '24'
           type: 'infiniband'
       tags: luna
@@ -218,3 +218,12 @@
 
     - role: trinity/wrapup
       tags: wrapup
+
+    # need to run bind role again to have dace domain included, bug?
+    # but this doesn't work, either, why?
+    - role: trinity/bind
+      bind_db_path: '{{ trix_local }}/var/lib/named'
+      bind_dnssec_enable: "no"
+      bind_dns_forwarders: '{{ trix_dns_forwarders }}'
+      tags: bind
+

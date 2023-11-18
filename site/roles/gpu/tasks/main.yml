@@ -60,7 +60,7 @@
     name: rc-local
     enabled: "yes"
 
-
+# dace specific env, should be moved to a dedicated role
 - name: Delete exiting home directory
   file:
     path: "/home"
@@ -73,4 +73,9 @@
     dest: /home
     state: link
     force: yes
+
+- name: Include dacecluster ip
+  lineinfile:
+    path: '/etc/hosts'
+    line: '192.168.1.10 dacecluster dacecluster.dace.utias.utoronto.ca'
 -

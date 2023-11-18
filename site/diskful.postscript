@@ -1,0 +1,4 @@
+# for rocky only, should use pci path
+cat << EOF >> /sysroot/etc/fstab
+/dev/sda1   /       ext4    defaults        0 0
+EOF
