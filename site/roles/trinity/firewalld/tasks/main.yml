@@ -60,6 +60,14 @@
 #    - '{{ firewalld_trusted_interfaces }}'
 #  when: firewalld_update_ifcfg_files
 
+- name: Enable masquerading on the 'trusted' zone
+  firewalld:
+    zone: 'trusted'
+    masquerade: 'yes'
+    state: enabled
+    permanent: true
+    immediate: true
+
 - name: Enable masquerading on the '{{ firewalld_masquerade_zone }}' zone
   firewalld:
     zone: '{{ firewalld_masquerade_zone }}'

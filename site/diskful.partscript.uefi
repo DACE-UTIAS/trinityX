@@ -1,0 +1,17 @@
+parted /dev/sda -s 'mklabel gpt'
+parted /dev/sda -s 'mkpart p ext4 1 512m'
+parted /dev/sda -s 'mkpart p fat32 512m 1g'
+parted /dev/sda -s 'mkpart p xfs 1g 100%'
+parted /dev/sda -s 'set 1 boot on'
+
+while [[ ! -b /dev/sda3 ]]; do sleep 1; done
+
+mkfs.ext4 /dev/sda1
+mkfs.vfat /dev/sda2
+mkfs.xfs -f /dev/sda3
+
+mount /dev/sda3 /sysroot
+mkdir /sysroot/boot
+mount /dev/sda1 /sysroot/boot
+mkdir /sysroot/boot/efi
+mount /dev/sda2 /sysroot/boot/efi

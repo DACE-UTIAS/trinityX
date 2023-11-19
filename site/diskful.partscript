@@ -1,10 +1,15 @@
 # only useful for rocky, should use pci-path instead /dev/sda
-parted /dev/sda -s 'mklabel gpt'
-parted /dev/sda -s 'rm 1'
-parted /dev/sda -s 'mkpart p ext4 1 100%'
+parted /dev/sda -s 'mklabel msdos'
+parted /dev/sda -s 'rm 1; rm 2'
+parted /dev/sda -s 'mkpart p ext2 1 256m'
+parted /dev/sda -s 'mkpart p ext3 256m 100%'
+parted /dev/sda -s 'set 1 boot on'
 
 while [[ ! -b /dev/sda1 ]]; do sleep 1; done
 
-mkfs.ext4 /dev/sda1
+mkfs.ext2 /dev/sda1
+mkfs.ext4 /dev/sda2
 
-mount /dev/sda1 /sysroot
+mount /dev/sda2 /sysroot
+mkdir /sysroot/boot
+mount /dev/sda1 /sysroot/boot
