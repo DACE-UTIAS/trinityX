@@ -86,8 +86,9 @@
       tags: obol
 
     - role: trinity/sssd
-      sss_allowed_groups:
-        - 'admins'
+      sss_allowed_groups: null # we allow everybody to login to the controllers, which is also a login node
+      #sss_allowed_groups:
+      #  - 'admins'
       sss_ldap_hosts:
         - '{{ trix_ctrl_hostname }}.{{ trix_domain }}'
       tags: sssd
@@ -215,6 +216,9 @@
       enable_ssl: true
       ssl_certificate: "{{ ssl_cert_path }}/{{ ansible_fqdn }}.crt"
       ssl_certificate_key: "{{ ssl_cert_path }}/{{ ansible_fqdn }}.key"
+
+    - role: gpu
+      tags: gpu
 
     - role: trinity/wrapup
       tags: wrapup

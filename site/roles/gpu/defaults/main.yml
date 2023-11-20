@@ -1,3 +1,5 @@
 ---
 gpu_packages:
   - pkg-config
+  - python3-virtualenv
+  - pip

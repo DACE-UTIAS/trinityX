@@ -24,13 +24,18 @@
 - name: Copy binary
   copy:
     src: "/data/software/NVIDIA-Linux-x86_64-535.104.12-5.14.0-284.30.1-custom.run"
-    dest: "/NVIDIA-Linux-x86_64-535.104.12-5.14.0-284.30.1-custom.run"
+    dest: "/tmp/NVIDIA-Linux-x86_64-535.104.12-5.14.0-284.30.1-custom.run"
 
 - name: Install from nvidia binary, IGNORE error if run the second time
-  command: modprobe -r nouveau; sh /NVIDIA-Linux-x86_64-535.104.12-5.14.0-284.30.1-custom.run -s -z; rm NVIDIA-Linux-x86_64-535.104.12-5.14.0-284.30.1-custom.run
+  command: modprobe -r nouveau; sh /tmp/NVIDIA-Linux-x86_64-535.104.12-5.14.0-284.30.1-custom.run -s -z
   changed_when: false
   when: ansible_facts['os_family'] == "RedHat"
   ignore_errors: true
+
+- name: Remove /tmp/NVIDIA-Linux-x86_64-535.104.12-5.14.0-284.30.1-custom.run
+  file:
+    path: "/tmp/NVIDIA-Linux-x86_64-535.104.12-5.14.0-284.30.1-custom.run"
+    state: absent
 
 - name: Copy nvidia.conf
   copy:
